@@ -8,7 +8,7 @@ using WSGolfDatabas.Models;
 
 namespace WSGolfDatabas.Database
 {
-    internal class GolfContext : DbContext
+    public class GolfContext : DbContext
     {
         private const string DatabaseName = "GolfDatabas";
         public DbSet<CourseTable> Courses { get; set; }
