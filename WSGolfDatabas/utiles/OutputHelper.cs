@@ -17,12 +17,5 @@ namespace WSGolfDatabas.utiles
             Console.Write(text);
             return Console.ReadLine();
         }
-        private static string Style(string namn)
-        {
-            namn = namn.Trim();
-            var förstaBokstav = namn.Substring(0, 1).ToUpper();
-            var restenAvNamnet = namn.Substring(1).ToLower();
-            return förstaBokstav + restenAvNamnet;
-        }
     }
 }
