@@ -11,8 +11,6 @@ namespace WSGolfDatabas.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Weather { get; set; }
         public string GolfCourse { get; set; }
-        public int Score { get; set; } // är det betygsättning av själva banan i sig?
     }
 }

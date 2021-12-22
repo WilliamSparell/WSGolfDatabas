@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WSGolfDatabas.Database;
+﻿using WSGolfDatabas.Database;
 using WSGolfDatabas.Models;
 using static WSGolfDatabas.utiles.OutputHelper;
 
@@ -11,27 +6,27 @@ namespace WSGolfDatabas.utiles
 {
     internal class CRUDHelper
     {
-        public static ScoreTable FindOrCreateRound(DateTime date, int score, int weatherId, int courseId)
+        public static ScoreTable FindOrCreateRound(DateTime date, int score, string weather, string course)
         {
             using (var db = new GolfContext())
             {
-                var round = db.Scores.
+                var existingCourse = db.Courses.
                 FirstOrDefault(
-
-                p => p.Date == date // Sök på datum
-
+                p => p.GolfCourse == course
                 );
-                if (round == null) // om rundan inte finns, skapa den
-                {
-                    round = new ScoreTable{ Date = date, Score = score, WeatherId = weatherId, CourseId = courseId };
-                    db.Scores.Add(round);
-                    db.SaveChanges();
-                    Console.WriteLine("rundan är nu skapad!");
-                }
-                else
-                    Console.WriteLine("Datumet finns redan inlagd");
+                if (existingCourse == null) existingCourse = new CourseTable { GolfCourse = course };
 
-                return round;
+                var existingWeather = db.Weathers.
+                FirstOrDefault(
+                p => p.Weather == weather
+                );
+                if (existingWeather == null) existingWeather = new WeatherTable { Weather = weather };
+
+                 = new ScoreTable { Date = date, Score = score,  = weather,  = course };
+                db.Scores.Add();
+                db.SaveChanges();
+
+                return;
             }
         }
         public static ScoreTable FindAndDeleteRound(DateTime date)
@@ -41,7 +36,7 @@ namespace WSGolfDatabas.utiles
                 var round = db.Scores.
                 FirstOrDefault(
 
-                p => p.Date == date 
+                p => p.Date == date
 
                 );
                 if (round != null) // om rundan finns, radera den
