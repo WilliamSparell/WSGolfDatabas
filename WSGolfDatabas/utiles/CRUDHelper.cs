@@ -6,7 +6,7 @@ namespace WSGolfDatabas.utiles
 {
     internal class CRUDHelper
     {
-        public static ScoreTable FindOrCreateRound(DateTime date, int score, string weather, string course)
+        public static void FindOrCreateRound(DateTime date, int score, string weather, string course)
         {
             using (var db = new GolfContext())
             {
@@ -22,35 +22,30 @@ namespace WSGolfDatabas.utiles
                 );
                 if (existingWeather == null) existingWeather = new WeatherTable { Weather = weather };
 
-                 = new ScoreTable { Date = date, Score = score, Weather = existingWeather, Course = existingCourse };
-                db.Scores.Add();
+                var round = new ScoreTable { Date = date, Score = score, WeatherId = existingWeather, CourseId = existingCourse };
+                db.Scores.Add(round);
                 db.SaveChanges();
-
-                return;
             }
         }
-        //public static ScoreTable FindAndDeleteRound(DateTime date)
-        //{
-        //    using (var db = new GolfContext())
-        //    {
-        //        var round = db.Scores.
-        //        FirstOrDefault(
+        public static ScoreTable FindAndDeleteRound()
+        {
+            using (var db = new GolfContext())
+            {
+                var round = db.Scores.
+                FirstOrDefault(
 
-        //        p => p.Date == date
+                p => p.Date == date
 
-        //        );
-        //        if (round != null) // om rundan finns, radera den
-        //        {
-        //            db.Scores.Remove(round);
-        //            db.SaveChanges();
-        //            Console.WriteLine("rundan är nu Borta!");
-        //        }
-        //        else
-        //            Console.WriteLine("Hittade ingen runda med det datumet");
-
-        //        return round;
-        //    }
-        //}
+                );
+                if (round != null) // om rundan finns, radera den
+                {
+                    db.Scores.Remove(round);
+                    db.SaveChanges();
+                    Console.WriteLine("rundan är nu Borta!");
+                }
+                return round;
+            }
+        }
         //public static ScoreTable FindAndUpdateRound(DateTime date)
         //{
         //    using (var db = new GolfContext())
@@ -87,7 +82,7 @@ namespace WSGolfDatabas.utiles
         //    }
         //    if (input == "2")
         //    {
-        //        int.TryParse(WriteAndInput("Skriv in nya score: "), out int updated);
+        //        string updated = WriteAndInput("Skriv in nya score: ");
         //        score.WeatherId = updated;
         //    }
         //    if (input == "3")

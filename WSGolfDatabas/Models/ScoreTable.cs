@@ -12,8 +12,8 @@ namespace WSGolfDatabas.Models
         [Key]
         public DateTime Date { get; set; }
         public int Score { get; set; }
-        WeatherTable WeatherId { get; set; }// 
-        CourseTable CourseId { get; set; }  // <-- EF kommer att länka automatiskt då
+        public WeatherTable WeatherId { get; set; }// 
+        public CourseTable CourseId { get; set; }  // <-- EF kommer att länka automatiskt då
         // tänk på att söka efter exempelvis väder i vädertabellen först innan du stoppar in den i Score
         // 1 - Väder = Molnigt, 20 grader
         // 2 - Sök på väder om Molnigt 20 grader finns
