@@ -1,10 +1,12 @@
 ﻿namespace WSGolfDatabas
 {
+    using WSGolfDatabas.Menu;
     class Program
     {
-        private static void Main()
+        static void Main()
         {
-            Console.WriteLine("Hello");
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.StartMenu();
         }
     }
 }

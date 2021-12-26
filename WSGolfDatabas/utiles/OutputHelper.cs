@@ -18,34 +18,14 @@ namespace WSGolfDatabas.utiles
             Console.Write(text);
             return Console.ReadLine();
         }
-        public static void ShowAll() // :D
+        public static void ShowAll() 
         {
-
             using (var db = new GolfContext())
             {
-
                 foreach (var item in db.Scores)
                 {
                     Console.WriteLine(item);
                 }
-
-            }
-        }
-        public static void SearchByWeather(string weather) // :D
-        {
-
-            using (var db = new GolfContext())
-            {
-                var showWeather = db.Weathers.
-                Where(
-                p => p.Weather == weather
-                );
-
-                foreach (var item in db.Scores)
-                {
-                    Console.WriteLine(showWeather);
-                }
-
             }
         }
     }
