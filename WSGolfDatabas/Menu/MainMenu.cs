@@ -12,7 +12,7 @@ namespace WSGolfDatabas.Menu
             {
                 Write("1. Ny Runda");
                 Write("2. Radera runda");
-                Write("3. Lista runda");
+                //Write("3. Lista runda");
                 Write("4. Uppdatera runda");
                 string input = Console.ReadLine();
 
@@ -20,8 +20,8 @@ namespace WSGolfDatabas.Menu
                     CreateRound();
                 if (input == "2")
                     DeleteRound();
-                if (input == "3")
-                    ListRound();
+                //if (input == "3")
+                //    ListRound();
                 if (input == "4")
                     UpdateRound();
             }
@@ -38,11 +38,11 @@ namespace WSGolfDatabas.Menu
 
         }
 
-        private void ListRound()
-        {
-            Console.Clear();
-            ShowAll();
-        }
+        //private void ListRound()
+        //{
+        //    Console.Clear();
+        //    ShowAll();
+        //}
 
         private void DeleteRound()
         {

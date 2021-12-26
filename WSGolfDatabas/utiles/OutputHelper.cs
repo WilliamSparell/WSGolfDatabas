@@ -18,7 +18,7 @@ namespace WSGolfDatabas.utiles
             Console.Write(text);
             return Console.ReadLine();
         }
-        public static void ShowAll() 
+        public static void ShowAll() //funkar ej
         {
             using (var db = new GolfContext())
             {
